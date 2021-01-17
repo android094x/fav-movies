@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-function App() {
+import Header from "./components/Header";
+import HomePage from "./components/HomePage";
+import DropdownMenu from "./components/DropdownMenu";
+
+const App = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
+
+  useEffect(() => {
+    const hideMenu = () => {
+      if (window.innerWidth > 768 && isOpen) {
+        setIsOpen(false);
+        console.log("i resized");
+      }
+    };
+
+    window.addEventListener("resize", hideMenu);
+
+    return () => {
+      window.removeEventListener("resize", hideMenu);
+    };
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="bg-gray-900">
+      <BrowserRouter>
+        <Header toggle={toggle} />
+        <DropdownMenu isOpen={isOpen} toggle={toggle} />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;
