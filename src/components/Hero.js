@@ -14,7 +14,7 @@ const Hero = () => {
       className="h-screen flex flex-col justify-center items-center"
     >
       <h4 className="text-white lg:text-7xl md:text-5xl sm:text-3xl text-lg">
-        Search for your
+        Nominate your Top 5
       </h4>
       <h1 className="text-white lg:text-9xl md:text-7xl sm:text-5xl text-3xl font-black mb-14">
         FavMoives
