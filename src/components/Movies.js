@@ -17,7 +17,7 @@ const Movies = () => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(
-          `http://www.omdbapi.com/?apikey=8a74ec88&type=movie&s=${searchTerm}`
+          `https://www.omdbapi.com/?apikey=8a74ec88&type=movie&s=${searchTerm}`
         );
         setSearchedMovies([]);
         getFavMovies();
